@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "author": "simon rivarola",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": 99.14,
+      "left": 182.63,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -38.1, "left": -168.6, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": 198, "left": -140.2, "attrs": { "color": "red" } },
+    { "type": "wokwi-potentiometer", "id": "pot1", "top": -145.3, "left": -115.4, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 246.2,
+      "left": 19.2,
+      "attrs": { "color": "green", "xray": "1" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": 159.6,
+      "left": -217,
+      "attrs": { "color": "cyan", "flip": "" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v9.6", "h57.6", "v-48" ] ],
+    [ "dht1:GND", "esp:GND.1", "black", [ "v19.2", "h86.4", "v67.2" ] ],
+    [ "oled1:GND", "esp:GND.1", "black", [ "v-9.6", "h-48", "v124.8", "h-182.4", "v-67.2" ] ],
+    [ "oled1:VCC", "esp:3V3", "red", [ "v-124.8", "h-225.64" ] ],
+    [ "oled1:SCL", "esp:22", "gold", [ "v0" ] ],
+    [ "oled1:SDA", "esp:21", "green", [ "v0" ] ],
+    [ "esp:12", "led1:A", "blue", [ "h-62.21", "v96" ] ],
+    [ "esp:GND.1", "led1:C", "black", [ "h-148.61", "v96", "h18.8" ] ],
+    [ "esp:3V3", "pot1:VCC", "red", [ "h-71.81", "v-105.6" ] ],
+    [ "pot1:GND", "esp:GND.1", "black", [ "v9.6", "h-96", "v220.8" ] ],
+    [ "esp:34", "pot1:SIG", "gray", [ "h0" ] ],
+    [ "esp:GND.1", "btn1:1.l", "black", [ "h-33.41", "v105.6" ] ],
+    [ "esp:27", "btn1:2.l", "violet", [ "h-23.81", "v153.4" ] ],
+    [ "dht1:SDA", "esp:4", "cyan", [ "v28.8", "h96.1", "v-115.2", "h163.2", "v153.6" ] ],
+    [ "led2:A", "esp:26", "#8f4814", [ "h19.2", "v-86.4" ] ],
+    [ "esp:GND.1", "led2:C", "black", [ "h-167.81", "v57.6", "h-38.8" ] ]
+  ],
+  "dependencies": {}
+}
